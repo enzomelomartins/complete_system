@@ -5,14 +5,14 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('hello')
-  getHello(): string {
-    const retorno = 'Retorno.'
-    return retorno;
-  }
+  // @Get('hello')
+  // getHello(): string {
+  //   const retorno = 'Retorno.'
+  //   return retorno;
+  // }
 
-  @Get('exemplo')
-  exemplo() {
-    return this.appService.solucionaExemplo();
-  }
+  // @Get('exemplo')
+  // exemplo() {
+  //   return this.appService.solucionaExemplo();
+  // }
 }
