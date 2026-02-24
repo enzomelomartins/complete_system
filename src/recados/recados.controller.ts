@@ -1,7 +1,10 @@
 import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Patch, Post, Query } from '@nestjs/common';
+import { RecadosService } from './recados.service';
 
 @Controller('recados')
 export class RecadosController {
+  constructor(private readonly recadosService: RecadosService) {}
+
   @HttpCode(HttpStatus.OK)
   @Get()
   findAll(@Query() pagination: any) {
