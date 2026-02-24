@@ -1,42 +1,36 @@
 @baseUrl = http://localhost:3000
 
 # RECADOS
-GET {{baseUrl}}/recados
+### Lista todos os recados
+GET {{baseUrl}}/recados/
 ?limit=10
 &offset=0
-# lista todos os recados
-
-###
-
-GET {{baseUrl}}/recados/32
-# lista apenas um recado
-
-###
-
-POST {{baseUrl}}/recados
-# cria um recado
+### Lista apenas um recado
+GET {{baseUrl}}/recados/2/
+### Cria um recado
+POST {{baseUrl}}/recados/
 Content-Type: application/json
 
 {
-  "recado": "Este é o recado que estou enviando.",
-  "nova chave": "outro valor"
+    "texto": "4 NOVO Recado",
+    "de": "Joana",
+    "para": "João",
+    "lido": false,
+    "data": "2024-08-08T11:32:39.624Z"
 }
-
-###
-
+### Atualiza um recado
 PATCH {{baseUrl}}/recados/2/
-# atualiza um recado
 Content-Type: application/json
 
 {
-  "recado": "Este é o recado que estou enviando.",
-  "atualizar": true
+    "texto": "ATUALIZAR Recado",
+    "de": "Joana",
+    "para": "João",
+    "lido": false,
+    "data": "2024-08-08T11:32:39.624Z"
 }
-
-###
-
+### Apaga um recado
 DELETE {{baseUrl}}/recados/2/
-# apaga um recado
 
 ### AppControllerGetHello
 
@@ -50,10 +44,10 @@ GET {{baseUrl}}/home/exemplo/
 
 ### ConceitosManualController Home
 
-# @name Conceitos Manual ControllerHome
+# @name ConceitosManualControllerHome
 GET {{baseUrl}}/conceitos-manual/
 
-### Conceitos AutomaticoController Home
+### ConceitosAutomaticoController Home
 
-# @name Conceitos AutomaticoControllerHome
+# @name ConceitosAutomaticoControllerHome
 GET {{baseUrl}}/conceitos-automatico/
