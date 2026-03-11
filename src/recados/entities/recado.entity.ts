@@ -1,28 +1,39 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Pessoa } from 'src/pessoas/entities/pessoa.entity';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
-@Entity('recados')
+@Entity()
 export class Recado {
   @PrimaryGeneratedColumn()
   id: number;
-  
+
   @Column({ type: 'varchar', length: 255 })
   texto: string;
-
-  @Column({ type: 'varchar', length: 255 })
-  de: string;
-
-  @Column({ type: 'varchar', length: 50 })
-  para: string;
 
   @Column({ default: false })
   lido: boolean;
 
   @Column()
-  data: Date;
+  data: Date; // createdAt
 
   @CreateDateColumn()
-  createdAt?: Date;
+  createdAt?: Date; // createdAt
 
   @UpdateDateColumn()
-  updatedAt?: Date;
+  updatedAt?: Date; // updatedAt
+
+  @ManyToOne(() => Pessoa)
+  @JoinColumn({ name: 'de' })
+  de: Pessoa;
+
+  @ManyToOne(() => Pessoa)
+  @JoinColumn({ name: 'para' })
+  para: Pessoa;
 }
