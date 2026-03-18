@@ -1,11 +1,12 @@
-import { BadRequestException, CallHandler, ExecutionContext, NestInterceptor, NotFoundException } from '@nestjs/common';
-import { catchError, tap, throwError } from 'rxjs';
+import { BadRequestException, CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
+import { catchError, throwError } from 'rxjs';
 
+@Injectable()
 export class ErrorHandlingInterceptor implements NestInterceptor {
     async intercept(context: ExecutionContext, next: CallHandler<any>) {
         console.log('ErrorHandlingInterceptor executado ANTES');
 
-        // await new Promise(resolve => setTimeout(resolve, 3000));
+        // await new Promise(resolve => setTimeout(resolve, 10000));
 
         return next.handle().pipe(
             catchError(error => {
@@ -14,9 +15,9 @@ export class ErrorHandlingInterceptor implements NestInterceptor {
                         return new BadRequestException(error.message);
                     }
 
-                    return new BadRequestException('Ocorreu um erro desconhecido.')
+                    return new BadRequestException('Ocorreu um erro desconhecido.');
                 });
-            })
+            }),
         );
     }
 }
