@@ -17,11 +17,12 @@ import { PaginationDto } from 'src/common/dto/pagination.dto';
 
 @Controller('recados')
 export class RecadosController {
-  constructor(private readonly recadosService: RecadosService) {}
+  constructor(private readonly recadosService: RecadosService) { }
 
   @HttpCode(HttpStatus.OK)
   @Get()
   async findAll(@Query() paginationDto: PaginationDto) {
+    // console.log('RecadosController findAll executado');
     const recados = await this.recadosService.findAll(paginationDto);
     return recados;
   }
