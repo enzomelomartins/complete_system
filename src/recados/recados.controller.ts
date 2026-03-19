@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -30,7 +31,10 @@ export class RecadosController {
     console.log('RecadosController', req['user']);
     // console.log('RecadosController findAll executado');
     const recados = await this.recadosService.findAll(paginationDto);
-    return recados;
+
+    throw new Error('MENSAGEM');
+
+    // return recados;
   }
 
   @Get(':id')
