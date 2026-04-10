@@ -3,9 +3,9 @@ import { RecadosController } from './recados.controller';
 import { RecadosService } from './recados.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Recado } from './entities/recado.entity';
-import { PessoasModule } from 'src/pessoas/pessoas.module';
+import { PessoasModule } from '/pessoas/pessoas.module';
 import { RecadosUtils, RecadosUtilsMock } from './recados.utils';
-import { SERVER_NAME } from 'src/common/constants/server-name.constant';
+import { SERVER_NAME } from '/common/constants/server-name.constant';
 
 @Module({
   imports: [

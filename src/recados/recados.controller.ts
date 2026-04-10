@@ -12,9 +12,9 @@ import {
 import { RecadosService } from './recados.service';
 import { CreateRecadoDto } from './dto/create-recado.dto';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
-import { PaginationDto } from 'src/common/dto/pagination.dto';
+import { PaginationDto } from '/common/dto/pagination.dto';
 import { RecadosUtils } from './recados.utils';
-import { SERVER_NAME } from 'src/common/constants/server-name.constant';
+import { SERVER_NAME } from '/common/constants/server-name.constant';
 
 @Controller('recados')
 export class RecadosController {

@@ -1,4 +1,4 @@
-import { Pessoa } from 'src/pessoas/entities/pessoa.entity';
+import { Pessoa } from '/pessoas/entities/pessoa.entity';
 import {
   Column,
   CreateDateColumn,
