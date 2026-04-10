@@ -10,7 +10,6 @@ import {
   ONLY_LOWERCASE_LETTERS_REGEX,
   REMOVE_SPACES_REGEX,
 } from './recados.constant';
-import { RemoveSpacesRegex } from '/common/regex/remove-spaces.regex';
 
 @Module({
   imports: [
@@ -31,7 +30,11 @@ import { RemoveSpacesRegex } from '/common/regex/remove-spaces.regex';
     },
     {
       provide: ONLY_LOWERCASE_LETTERS_REGEX,
-      useFactory: (regexFactory: RegexFactory) => {
+      useFactory: async (regexFactory: RegexFactory) => {
+        console.log('ESPERANDO: Vou aguardar a promise abaixo ser resolvida.');
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        console.log('PRONTO: Vou aguardar a promise abaixo ser resolvida.');
+
         return regexFactory.create('OnlyLowercaseLettersRegex');
       },
       inject: [RegexFactory],
@@ -39,4 +42,4 @@ import { RemoveSpacesRegex } from '/common/regex/remove-spaces.regex';
   ],
   exports: [RecadosUtils],
 })
-export class RecadosModule {}
+export class RecadosModule { }
