@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, Scope } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException, Scope } from '@nestjs/common';
 import { Recado } from './entities/recado.entity';
 import { CreateRecadoDto } from './dto/create-recado.dto';
 import { UpdateRecadoDto } from './dto/update-recado.dto';
@@ -6,25 +6,21 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { PessoasService } from '/pessoas/pessoas.service';
 import { PaginationDto } from '/common/dto/pagination.dto';
-import { ConfigService } from '@nestjs/config';
-
-// Scope.DEFAULT = O provider em questão é um singleton
-// Scope.REQUEST = O provider em questão é instanciado a cada requisição
-// Scope.TRANSIENT = É criada uma instancia do provider para cada classe que injetar este provider
+import type { ConfigType } from '@nestjs/config';
+import recadosConfig from './recados.config';
 
 @Injectable({ scope: Scope.DEFAULT })
 export class RecadosService {
   private count = 0;
+
   constructor(
     @InjectRepository(Recado)
     private readonly recadoRepository: Repository<Recado>,
     private readonly pessoasService: PessoasService,
-    private readonly configService: ConfigService,
+    @Inject(recadosConfig.KEY)
+    private readonly recadosConfiguration: ConfigType<typeof recadosConfig>,
   ) {
-    const databaseUsername =
-      this.configService.get<string>('DATABASE_USERNAME');
-    console.log({ databaseUsername });
-    console.log('proccess.env', process.env.DATABASE_USERNAME);
+    console.log(recadosConfiguration);
   }
 
   throwNotFoundError(): never {
